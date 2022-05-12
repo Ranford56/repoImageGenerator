@@ -29,15 +29,19 @@ def generateImage(repoInfo):
     width = dimension[0]
     height = dimension[1]
     img = Image.new('RGBA', (width, height), "white")
-    data = "lorem ipsum"
+    logo = Image.open(r"logotipo-de-github.png")
+    logo = logo.convert('RGBA')
 
-    font = ImageFont.truetype("RobotoCondensed-Regular.ttf", 75)
-    w,h = font.getsize(data)
-
+    font = ImageFont.truetype("RobotoCondensed-Regular.ttf", 50)
     draw = ImageDraw.Draw(img)
-    draw.text(((width-w)/2,(height-h)/2), data, font=font, fill="black")
+    initPosition = 50
+    for info in repoInfo:
+        data = str(repoInfo[info])
+        w,h = font.getsize(data)
+        draw.text(((width-w)/2, initPosition), data, font=font, fill="black")
+        initPosition += 100
+    w, h = logo.size
+    img.paste(logo, (int((width-w)/2),int((height-h)/2)), logo)
     img.show()
 
 generateImage(getInfo(site, False))
-#repoInfo = getInfo(site, hasMultipleLang)
-#generateImage(width, height, repoInfo)

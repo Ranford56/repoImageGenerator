@@ -25,5 +25,3 @@ def getInfo(site, hasMultipleLang):
     }
     
     return repoInfo
-
-getInfo(site, True)
