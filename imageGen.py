@@ -44,4 +44,4 @@ def generateImage(repoInfo):
     img.paste(logo, (int((width-w)/2),int((height-h)/2)), logo)
     img.show()
 
-generateImage(getInfo(site, False))
+generateImage(getInfo(site))
